@@ -10,7 +10,7 @@ df <-read_csv("https://raw.githubusercontent.com/carranco-sga/Mexico-COVID-19/ma
 #first filter
 df_P <- df %>% select(-contains("_"))
 
-#get position last observation
+#get last observation position
 n <- df_P %>% nrow()
 
 #get date 
