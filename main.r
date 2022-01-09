@@ -27,7 +27,11 @@ df_plot<-as_tibble(value)
 df_plot$region <- c(1:32)
 
 #title
-titulo <- sprintf("Casos nuevos de covid a %s \n total= %s",fecha_,format(sum(value),big.mark=","))
+titulo <- sprintf("Casos diarios de covid a %s \n (hoy = %s)",fecha_,format(sum(value),big.mark=","))
+
+#caption
+cap_ <- labs(caption = "Datos oficiales de los Comunicados Técnicos Diarios (CTD)\npublicado por la Secretaría de Salud Federal.")
+
 
 #init map
 map<-mxstate_choropleth(
@@ -62,7 +66,7 @@ map <- map +
 
 #add caption
 map <- map +
-    labs(caption = "Datos oficiales de los Comunicados Técnicos Diarios (CTD)\npublicado por la Secretaría de Salud Federal.")
+    cap_
 
 #map
 map
@@ -103,7 +107,7 @@ gg <- gg +
     )
     
 #show plot
-gg
+gg + cap_
 
 #save map
 ggsave(sprintf("acumulados_covid.jpg"), height = 4.9, width = 8.57,units = "in")
@@ -136,7 +140,7 @@ gg <- gg +
     )
 
 #show plot
-gg    
+gg + cap_    
 
 #save map
 ggsave(sprintf("diarios_covid.jpg"), height = 4.9, width = 8.57,units = "in")
