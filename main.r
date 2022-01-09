@@ -69,3 +69,74 @@ map
 
 #save map
 ggsave(sprintf("casos_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+
+
+
+#other plots of interest
+
+#get data from main df
+df_P <- df %>%  select(Fecha)
+df_P$value <- df$Pos
+
+#
+
+# init plot
+gg <- ggplot(df_P) +
+    aes(x=Fecha, y= value) +
+    geom_line(size=1)
+
+
+
+#add title and labs
+gg <- gg +
+    ggtitle(sprintf("Casos de covid acomulados a %s\n Acomulado = %s", fecha_,format(df_P$value[n] ,big.mark=",") )) +
+    xlab("Fecha") +
+    ylab("Observaciones")
+    
+#add theme
+gg <- gg +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(color="red", size=22, face="bold.italic", hjust = 0.5),
+        axis.title.x = element_text(color="blue", size=14, face="bold"),
+        axis.title.y = element_text(color="brown", size=14, face="bold")
+    )
+    
+#show plot
+gg
+
+#save map
+ggsave(sprintf("acomulados_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+
+
+# daily cases
+# mutate df_P
+df_P$diarios <- c(0, diff(df_P$value))
+
+#init plot
+gg <-ggplot(df_P) +
+    aes(x=Fecha, y= diarios) +
+    geom_point(color="brown")+
+    geom_line()
+
+#add labs and title
+gg <- gg +
+    ggtitle(sprintf("Casos diarios a %s\n Hoy = %s", fecha_,format(df_P$diarios[n] ,big.mark=",") )) +
+    xlab("Fecha") +
+    ylab("Observaciones")
+
+
+#add theme
+gg <- gg + 
+    theme_minimal() +
+    theme(
+        plot.title = element_text(color="red", size=22, face="bold.italic", hjust = 0.5),
+        axis.title.x = element_text(color="blue", size=14, face="bold"),
+        axis.title.y = element_text(color="brown", size=14, face="bold")
+    )
+
+#show plot
+gg    
+
+#save map
+ggsave(sprintf("diarios_covid.jpg"), height = 4.9, width = 8.57,units = "in")
