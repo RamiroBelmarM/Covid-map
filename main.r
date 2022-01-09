@@ -89,7 +89,7 @@ gg <- ggplot(df_P) +
 
 #add title and labs
 gg <- gg +
-    ggtitle(sprintf("Casos de covid acomulados a %s\n Acomulado = %s", fecha_,format(df_P$value[n] ,big.mark=",") )) +
+    ggtitle(sprintf("Casos de covid acumulados a %s\n Acomulado = %s", fecha_,format(df_P$value[n] ,big.mark=",") )) +
     xlab("Fecha") +
     ylab("Observaciones")
     
@@ -106,7 +106,7 @@ gg <- gg +
 gg
 
 #save map
-ggsave(sprintf("acomulados_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+ggsave(sprintf("acumulados_covid.jpg"), height = 4.9, width = 8.57,units = "in")
 
 
 # daily cases
