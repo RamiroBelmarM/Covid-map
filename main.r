@@ -27,7 +27,7 @@ df_plot<-as_tibble(value)
 df_plot$region <- c(1:32)
 
 #title
-titulo <- sprintf("Casos de covid a %s \n total= %s",fecha_,format(sum(value),big.mark=","))
+titulo <- sprintf("Casos nuevos de covid a %s \n total= %s",fecha_,format(sum(value),big.mark=","))
 
 #init map
 map<-mxstate_choropleth(
