@@ -14,7 +14,7 @@ df_P <- df %>% select(-contains("_"))
 n <- df_P %>% nrow()
 
 #get date 
-fecha_ <- df_P$Fecha[n]
+fecha_ <- format(as.Date(df_P$Fecha[n]), "%d-%m-%Y")
 
 #get value
 value <- unlist(df_P[n,] %>% select(2:33), use.names = FALSE) -
@@ -27,7 +27,7 @@ df_plot<-as_tibble(value)
 df_plot$region <- c(1:32)
 
 #title
-titulo <- sprintf("Casos de covid al %s \n total= %s",fecha_,format(sum(value),big.mark=","))
+titulo <- sprintf("Casos de covid a %s \n total= %s",fecha_,format(sum(value),big.mark=","))
 
 #init map
 map<-mxstate_choropleth(
@@ -120,7 +120,7 @@ gg <-ggplot(df_P) +
     geom_line()
 
 #add labs and title
-gg <- gg +
+gg <- gg  +
     ggtitle(sprintf("Casos diarios a %s\n Hoy = %s", fecha_,format(df_P$diarios[n] ,big.mark=",") )) +
     xlab("Fecha") +
     ylab("Observaciones")
