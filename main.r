@@ -17,8 +17,13 @@ n <- df_P %>% nrow()
 fecha_ <- format(as.Date(df_P$Fecha[n]), "%d-%m-%Y")
 
 #get value
-value <- unlist(df_P[n,] %>% select(2:33), use.names = FALSE) -
-    unlist(df_P[n-1,] %>% select(2:33), use.names = FALSE)
+value <- unlist(
+        df_P[n,] %>% select(2:33), 
+        use.names = FALSE
+    ) - unlist(
+            df_P[n-1,] %>% select(2:33), 
+            use.names = FALSE
+        )
 
 # vector to tibble
 df_plot<-as_tibble(value)
@@ -27,7 +32,14 @@ df_plot<-as_tibble(value)
 df_plot$region <- c(1:32)
 
 #title
-titulo <- sprintf("Casos diarios de covid a %s \n (hoy = %s)",fecha_,format(sum(value),big.mark=","))
+titulo <- sprintf(
+    "Casos diarios de covid a %s \n (hoy = %s)",
+    fecha_,
+    format(
+        sum(value),
+        big.mark=","
+        )
+    )
 
 #caption
 cap_ <- labs(caption = "Datos oficiales de los Comunicados Técnicos Diarios (CTD)\npublicado por la Secretaría de Salud Federal.")
@@ -72,7 +84,12 @@ map <- map +
 map
 
 #save map
-ggsave(sprintf("casos_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+ggsave(
+    sprintf("casos_covid.jpg"), 
+    height = 4.0, 
+    width = 6.8,
+    units = "in"
+    )
 
 
 
@@ -93,7 +110,16 @@ gg <- ggplot(df_P) +
 
 #add title and labs
 gg <- gg +
-    ggtitle(sprintf("Casos de covid acumulados a %s\n Acumulado = %s", fecha_,format(df_P$value[n] ,big.mark=",") )) +
+    ggtitle(
+        sprintf(
+            "Casos de covid acumulados a %s\n Acumulado = %s", 
+            fecha_,
+            format(
+                df_P$value[n],
+                big.mark=","
+                ) 
+            )
+        ) +
     xlab("Fecha") +
     ylab("Observaciones")
     
@@ -101,16 +127,34 @@ gg <- gg +
 gg <- gg +
     theme_minimal() +
     theme(
-        plot.title = element_text(color="red", size=22, face="bold.italic", hjust = 0.5),
-        axis.title.x = element_text(color="blue", size=14, face="bold"),
-        axis.title.y = element_text(color="brown", size=14, face="bold")
+        plot.title = element_text(
+            color="red", 
+            size=22, 
+            face="bold.italic", 
+            hjust = 0.5
+            ),
+        axis.title.x = element_text(
+            color="blue", 
+            size=14, 
+            face="bold"
+            ),
+        axis.title.y = element_text(
+            color="brown", 
+            size=14, 
+            face="bold"
+            )
     )
     
 #show plot
 gg + cap_
 
 #save map
-ggsave(sprintf("acumulados_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+ggsave(
+    sprintf("acumulados_covid.jpg"),  
+    height = 4.0, 
+    width = 6.8,
+    units = "in"
+    )
 
 
 # daily cases
@@ -125,7 +169,16 @@ gg <-ggplot(df_P) +
 
 #add labs and title
 gg <- gg  +
-    ggtitle(sprintf("Casos diarios a %s\n Hoy = %s", fecha_,format(df_P$diarios[n] ,big.mark=",") )) +
+    ggtitle(
+        sprintf(
+            "Historial de casos diarios de covid\nhasta el %s. Hoy = %s", 
+            fecha_,
+            format(
+                df_P$diarios[n],
+                big.mark=","
+                ) 
+            )
+        ) +
     xlab("Fecha") +
     ylab("Observaciones")
 
@@ -134,13 +187,31 @@ gg <- gg  +
 gg <- gg + 
     theme_minimal() +
     theme(
-        plot.title = element_text(color="red", size=22, face="bold.italic", hjust = 0.5),
-        axis.title.x = element_text(color="blue", size=14, face="bold"),
-        axis.title.y = element_text(color="brown", size=14, face="bold")
+        plot.title = element_text(
+            color="red", 
+            size=22, 
+            face="bold.italic", 
+            hjust = 0.5
+            ),
+        axis.title.x = element_text(
+            color="blue", 
+            size=14, 
+            face="bold"
+            ),
+        axis.title.y = element_text(
+            color="brown", 
+            size=14, 
+            face="bold"
+            )
     )
 
 #show plot
 gg + cap_    
 
 #save map
-ggsave(sprintf("diarios_covid.jpg"), height = 4.9, width = 8.57,units = "in")
+ggsave(
+    sprintf("diarios_covid.jpg"), 
+    height = 4.0, 
+    width = 6.8,
+    units = "in"
+    )
