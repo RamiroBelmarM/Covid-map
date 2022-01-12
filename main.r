@@ -46,7 +46,10 @@ titulo <- sprintf(
     )
 
 #caption
-cap_ <- labs(caption = "Datos oficiales de los Comunicados Técnicos Diarios (CTD)\npublicado por la Secretaría de Salud Federal.")
+cap_ <- labs(
+    caption = 
+        "Datos oficiales de los Comunicados Técnicos Diarios (CTD)\npublicado por la Secretaría de Salud Federal."
+    )
 
 
 #init map
@@ -56,7 +59,8 @@ map<-mxstate_choropleth(
     )
 
 #add title
-map <- map + ggtitle(titulo)
+map <- map + 
+    ggtitle(titulo)
 
 #change fill to viridis
 map <-map +
@@ -100,7 +104,9 @@ ggsave(
 #other plots of interest
 
 #get data from main df
-df_P <- df %>%  select(Fecha)
+df_P <- df %>%  
+    select(Fecha)
+
 df_P$value <- df$Pos
 
 #
