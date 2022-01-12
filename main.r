@@ -7,6 +7,10 @@ library(viridis)
 df <-read_csv("https://raw.githubusercontent.com/carranco-sga/Mexico-COVID-19/master/Mexico_COVID19_CTD.csv",
               show_col_types = FALSE)
 
+#save csv
+write.csv(df, file=gzfile("datos_covid.csv.gz"))
+
+
 #first filter
 df_P <- df %>% select(-contains("_"))
 
@@ -33,7 +37,7 @@ df_plot$region <- c(1:32)
 
 #title
 titulo <- sprintf(
-    "Casos diarios de covid a %s \n (hoy = %s)",
+    "Casos diarios de covid\n (%s = %s casos)",
     fecha_,
     format(
         sum(value),
@@ -171,7 +175,7 @@ gg <-ggplot(df_P) +
 gg <- gg  +
     ggtitle(
         sprintf(
-            "Historial de casos diarios de covid\nhasta el %s. Hoy = %s", 
+            "Historial de casos diarios de covid \n %s = %s casos", 
             fecha_,
             format(
                 df_P$diarios[n],
