@@ -68,7 +68,7 @@ map <-map +
         "Casos",
         option = "magma",
         na.value = "black",
-        breaks = breaks_log(base = 2),
+        breaks = breaks_log(base = 10),
         trans = "log"
     )
 
