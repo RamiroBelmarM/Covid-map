@@ -14,6 +14,7 @@ write.csv(df, file=gzfile("datos_covid.csv.gz"))
 #first filter
 df_P <- df %>% select(-contains("_"))
 
+
 #get last observation position
 n <- df_P %>% nrow()
 
@@ -33,7 +34,7 @@ value <- unlist(
 df_plot<-as_tibble(value)
 
 #add region
-df_plot$region <- c(1:32)
+df_plot$region <- c(1:4,7:9,5,6,10:14,16,17,15,18:32)
 
 #title
 titulo <- sprintf(
@@ -225,3 +226,4 @@ ggsave(
     width = 6.8,
     units = "in"
     )
+
