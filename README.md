@@ -14,4 +14,4 @@ Mapa de casos diarios de covid por estado en México, de acuerdo con los datos o
 
 
 # Datos
-https://github.com/carranco-sga/Mexico-COVID-19
+https://github.com/carranco-sga/Mexico-COVID-19_2022
